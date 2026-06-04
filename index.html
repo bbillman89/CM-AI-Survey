@@ -396,7 +396,7 @@
     <div class="card">
       <div class="field">
         <label>Department <span class="req">*</span></label>
-        <select id="dept" required>
+        <select id="dept" name="department" required>
           <option value="">— Select your department —</option>
           <option>IT / Product Engineering</option>
           <option>Sales</option>
@@ -423,7 +423,7 @@
 
       <div class="field">
         <label>Your name <span class="sub">Optional — leave blank to stay anonymous</span></label>
-        <input type="text" placeholder="First name or leave blank">
+        <input type="text" name="respondent_name" placeholder="First name or leave blank">
       </div>
     </div>
 
@@ -442,21 +442,21 @@
         <label>In your own words, what does a typical day look like for you?
           <span class="sub">Walk us through the main things you do — start to finish. No need to be formal.</span>
         </label>
-        <textarea placeholder="Example: I start by checking job tickets in the queue, then I…" rows="5"></textarea>
+        <textarea name="typical_day" placeholder="Example: I start by checking job tickets in the queue, then I…" rows="5"></textarea>
       </div>
 
       <div class="field">
         <label>What parts of your job do you find most meaningful or enjoyable? <span class="req">*</span>
           <span class="sub">These are the things that make a good day feel like a good day.</span>
         </label>
-        <textarea placeholder="Example: I love when I can sit down and really design something — when there's time to think creatively and get feedback from the team." rows="4"></textarea>
+        <textarea name="work_enjoyable" placeholder="Example: I love when I can sit down and really design something — when there's time to think creatively and get feedback from the team." rows="4"></textarea>
       </div>
 
       <div class="field">
         <label>What parts of your job feel like a grind — things that slow you down or feel like a waste of your time? <span class="req">*</span>
           <span class="sub">Be honest. There are no wrong answers. We want to find these things and fix them.</span>
         </label>
-        <textarea placeholder="Example: I spend a lot of time reformatting the same reports manually every week. It feels repetitive and I never feel like I'm adding much value doing it." rows="4"></textarea>
+        <textarea name="work_grind" placeholder="Example: I spend a lot of time reformatting the same reports manually every week. It feels repetitive and I never feel like I'm adding much value doing it." rows="4"></textarea>
       </div>
 
       <div class="field">
@@ -506,12 +506,12 @@
         <label>Where do handoffs between your role and other departments tend to break down?
           <span class="sub">Think about the moments when work gets stuck, lost, or comes back with problems.</span>
         </label>
-        <textarea placeholder="Example: When jobs come from Sales to Prepress, the files are often missing specs or the wrong size — we spend time chasing info that should have come with the order." rows="4"></textarea>
+        <textarea name="handoff_breakdown" placeholder="Example: When jobs come from Sales to Prepress, the files are often missing specs or the wrong size — we spend time chasing info that should have come with the order." rows="4"></textarea>
       </div>
 
       <div class="field">
         <label>If you could fix one thing about how work flows through your department — or between yours and another — what would it be?</label>
-        <textarea placeholder="Example: If Sales could log customer notes directly into the job ticket instead of emailing them to us separately, we'd save so much back-and-forth." rows="3"></textarea>
+        <textarea name="flow_fix" placeholder="Example: If Sales could log customer notes directly into the job ticket instead of emailing them to us separately, we'd save so much back-and-forth." rows="3"></textarea>
       </div>
 
       <div class="field">
@@ -528,7 +528,7 @@
         <label>Can you give an example?
           <span class="sub">You don't need names or details — just describe the situation.</span>
         </label>
-        <textarea placeholder="Describe a situation where you saw a better way but weren't sure how to raise it…" rows="3"></textarea>
+        <textarea name="voice_example" placeholder="Describe a situation where you saw a better way but weren't sure how to raise it…" rows="3"></textarea>
       </div>
     </div>
 
@@ -555,28 +555,28 @@
 
       <div class="field conditional" id="ai-tools-used">
         <label>What tools are you using, and what are you using them for?</label>
-        <textarea placeholder="Example: ChatGPT for drafting emails, Claude for writing specs…" rows="3"></textarea>
+        <textarea name="ai_tools_used" placeholder="Example: ChatGPT for drafting emails, Claude for writing specs…" rows="3"></textarea>
       </div>
 
       <div class="field">
         <label>If AI could take something off your plate — something repetitive, time-consuming, or frustrating — what would you want it to handle?
           <span class="sub">Don't worry about whether it's technically possible. What would make your day better?</span>
         </label>
-        <textarea placeholder="Example: Automatically reformatting incoming art files to our spec sheet. Or summarizing long email threads so I don't have to read the whole chain." rows="4"></textarea>
+        <textarea name="ai_offload" placeholder="Example: Automatically reformatting incoming art files to our spec sheet. Or summarizing long email threads so I don't have to read the whole chain." rows="4"></textarea>
       </div>
 
       <div class="field">
         <label>What tasks do you think should <em>stay human</em> — things where you'd want a person making the call, not an algorithm? <span class="req">*</span>
           <span class="sub">This is important. We're not trying to automate judgment.</span>
         </label>
-        <textarea placeholder="Example: Customer conversations, anything that requires context about a relationship, final quality decisions before a job ships." rows="4"></textarea>
+        <textarea name="stay_human" placeholder="Example: Customer conversations, anything that requires context about a relationship, final quality decisions before a job ships." rows="4"></textarea>
       </div>
 
       <div class="field">
         <label>What concerns do you have about AI being used at CMP?
           <span class="sub">Job security, accuracy, complexity, privacy — anything is fair to raise here.</span>
         </label>
-        <textarea placeholder="Example: I worry about AI making mistakes that nobody catches because people assumed it was right." rows="3"></textarea>
+        <textarea name="ai_concerns" placeholder="Example: I worry about AI making mistakes that nobody catches because people assumed it was right." rows="3"></textarea>
       </div>
     </div>
 
@@ -620,14 +620,14 @@
 
       <div class="field">
         <label>If you could change one thing about working at CMP — anything — what would it be?</label>
-        <textarea placeholder="Big or small. Process, tools, communication, environment — whatever comes to mind first." rows="3"></textarea>
+        <textarea name="change_one_thing" placeholder="Big or small. Process, tools, communication, environment — whatever comes to mind first." rows="3"></textarea>
       </div>
 
       <div class="field">
         <label>Is there anything else you want leadership to know?
           <span class="sub">Open floor. If something didn't fit anywhere else, here's the space for it.</span>
         </label>
-        <textarea placeholder="Anything you want to share…" rows="4"></textarea>
+        <textarea name="anything_else" placeholder="Anything you want to share…" rows="4"></textarea>
       </div>
     </div>
 
