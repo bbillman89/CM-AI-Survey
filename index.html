@@ -3,670 +3,695 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CMP AI Readiness Survey</title>
+<title>CMP — Work & AI Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #F7F5F0;
-    --surface: #FFFFFF;
-    --border: #E2DDD6;
-    --border-focus: #1A1A1A;
-    --text: #1A1A1A;
-    --text-muted: #6B6560;
-    --accent: #1A1A1A;
-    --accent-light: #F0EDE8;
-    --tag-bg: #ECEAE5;
-    --tag-text: #3A3733;
-    --progress-bg: #E2DDD6;
-    --progress-fill: #1A1A1A;
-    --radio-active: #1A1A1A;
+    --ink: #1a1a1a;
+    --mid: #4a4a4a;
+    --muted: #8a8a8a;
+    --rule: #d8d0c8;
+    --cream: #faf8f4;
+    --paper: #ffffff;
+    --accent: #1d4ed8;
+    --accent-light: #eff6ff;
+    --warn: #b45309;
+    --success: #166534;
+    --tag-bg: #f0ede8;
   }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
     min-height: 100vh;
-    padding: 0;
   }
 
-  .survey-wrap {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 48px 24px 80px;
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--ink);
+    color: #fff;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-
-  .survey-header {
-    margin-bottom: 40px;
+  .site-header .logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px;
+    letter-spacing: 0.04em;
   }
-
-  .survey-header .eyebrow {
-    font-family: 'DM Mono', monospace;
+  .site-header .logo span { color: #93c5fd; }
+  .site-header .badge {
     font-size: 11px;
-    letter-spacing: 0.12em;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 12px;
+    color: #94a3b8;
   }
 
-  .survey-header h1 {
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 1.25;
-    margin-bottom: 12px;
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 48px 40px 56px;
+    border-bottom: 3px solid var(--accent);
   }
-
-  .survey-header p {
+  .hero-inner { max-width: 760px; margin: 0 auto; }
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #93c5fd;
+  }
+  .hero p {
     font-size: 15px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 520px;
+    line-height: 1.7;
+    color: #cbd5e1;
+    max-width: 600px;
+    margin-bottom: 24px;
+  }
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hero-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
   }
 
-  .progress-bar-wrap {
-    margin: 32px 0 0;
+  /* ── CALLOUT ── */
+  .callout-bar {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 16px 24px;
+    max-width: 760px;
+    margin: 32px auto 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1e3a5f;
+  }
+  .callout-bar strong { font-weight: 600; }
+
+  /* ── MAIN LAYOUT ── */
+  .main { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
     display: flex;
     align-items: center;
     gap: 12px;
+    margin: 40px 0 20px;
+  }
+  .section-label .num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-label h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-label p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 8px 0 24px 44px;
   }
 
-  .progress-bar {
-    flex: 1;
-    height: 3px;
-    background: var(--progress-bg);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: var(--progress-fill);
-    border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-
-  .progress-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    white-space: nowrap;
-  }
-
-  .section {
-    display: none;
-  }
-
-  .section.active {
-    display: block;
-    animation: fadeUp 0.3s ease;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .field {
-    margin-bottom: 28px;
-  }
-
+  /* ── FORM FIELDS ── */
+  .field { margin-bottom: 24px; }
   .field label {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
+    color: var(--ink);
     margin-bottom: 8px;
     line-height: 1.4;
   }
-
-  .field .hint {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-    line-height: 1.5;
+  .field label .sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 2px;
   }
-
   .field input[type="text"],
-  .field input[type="email"],
   .field select,
   .field textarea {
     width: 100%;
-    padding: 11px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    outline: none;
+    padding: 10px 14px;
+    border: 1.5px solid var(--rule);
+    border-radius: 6px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--paper);
     transition: border-color 0.15s;
-    appearance: none;
+    outline: none;
+    -webkit-appearance: none;
   }
-
-  .field select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 36px;
-    cursor: pointer;
-  }
-
-  .field textarea {
-    resize: vertical;
-    min-height: 100px;
-    line-height: 1.6;
-  }
-
-  .field input:focus,
+  .field input[type="text"]:focus,
   .field select:focus,
   .field textarea:focus {
-    border-color: var(--border-focus);
-  }
-
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .radio-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    font-size: 15px;
-  }
-
-  .radio-item:hover {
-    border-color: var(--border-focus);
-    background: var(--accent-light);
-  }
-
-  .radio-item input[type="radio"] {
-    width: 16px;
-    height: 16px;
-    accent-color: var(--radio-active);
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-
-  .radio-item.selected {
-    border-color: var(--border-focus);
-    background: var(--accent-light);
-  }
-
-  .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .checkbox-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    font-size: 15px;
-  }
-
-  .checkbox-item:hover {
-    border-color: var(--border-focus);
-    background: var(--accent-light);
-  }
-
-  .checkbox-item input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    accent-color: var(--radio-active);
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-
-  .checkbox-item.checked {
-    border-color: var(--border-focus);
-    background: var(--accent-light);
-  }
-
-  .scale-wrap {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .scale-btn {
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .scale-btn:hover {
-    border-color: var(--border-focus);
-    background: var(--accent-light);
-  }
-
-  .scale-btn.selected {
-    background: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    box-shadow: 0 0 0 3px rgba(29,78,216,0.1);
   }
+  .field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+  .field select { cursor: pointer; }
 
-  .scale-labels {
+  /* Radio / checkbox groups */
+  .choice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .choice-grid.single { grid-template-columns: 1fr; }
+  @media (max-width: 500px) { .choice-grid { grid-template-columns: 1fr; } }
+
+  .choice-item {
     display: flex;
-    justify-content: space-between;
-    margin-top: 6px;
-    font-size: 12px;
-    color: var(--text-muted);
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--rule);
+    border-radius: 6px;
+    background: var(--paper);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .choice-item:hover { border-color: #a0aec0; }
+  .choice-item input { margin-top: 2px; accent-color: var(--accent); cursor: pointer; }
+  .choice-item .choice-text {
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .choice-item input:checked ~ .choice-text { font-weight: 500; }
+  .choice-item:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-light);
   }
 
-  .nav-row {
+  /* Scale row */
+  .scale-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .scale-row .scale-ends {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .scale-btns { display: flex; gap: 6px; }
+  .scale-btn {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--rule);
+    border-radius: 6px;
+    background: var(--paper);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.1s;
+    color: var(--ink);
+  }
+  .scale-btn:hover { border-color: var(--accent); }
+  .scale-btn.selected { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Value stream visual hint */
+  .flow-hint {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 36px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--muted);
   }
-
-  .btn {
-    padding: 11px 24px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
+  .flow-hint .step {
+    background: var(--tag-bg);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11.5px;
     font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.15s;
-    border: none;
-    outline: none;
+    color: var(--mid);
+  }
+  .flow-hint .arrow { color: var(--rule); font-size: 14px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 16px;
   }
 
-  .btn-primary {
-    background: var(--text);
+  /* ── SUBMIT ── */
+  .submit-zone {
+    background: var(--ink);
+    border-radius: 10px;
+    padding: 32px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .submit-zone p {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .btn-submit {
+    background: var(--accent);
     color: #fff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 6px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.15s, transform 0.1s;
   }
+  .btn-submit:hover { background: #1e40af; transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
 
-  .btn-primary:hover {
-    background: #333;
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--border-focus);
-    color: var(--text);
-  }
-
-  .thank-you {
+  /* ── THANK YOU ── */
+  #thank-you {
     display: none;
     text-align: center;
-    padding: 48px 24px;
-    animation: fadeUp 0.4s ease;
-  }
-
-  .thank-you.active {
-    display: block;
-  }
-
-  .thank-you .check-circle {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--tag-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-  }
-
-  .thank-you h2 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  .thank-you p {
-    font-size: 15px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 400px;
+    padding: 80px 20px;
+    max-width: 500px;
     margin: 0 auto;
   }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 28px 0;
+  #thank-you .ty-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
   }
+  #thank-you h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+  #thank-you p { font-size: 15px; color: var(--mid); line-height: 1.7; }
 
-  .required-star {
-    color: #C0392B;
-    margin-left: 3px;
+  /* ── REQUIRED STAR ── */
+  .req { color: var(--accent); margin-left: 2px; }
+
+  /* ── CONDITIONAL ── */
+  .conditional { display: none; }
+  .conditional.visible { display: block; }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #78350f;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
 </style>
 </head>
 <body>
-<div class="survey-wrap">
 
-  <div class="survey-header">
-    <div class="eyebrow">Cleveland Menu Printing</div>
-    <h1>AI Readiness Survey</h1>
-    <p>We're exploring how AI tools can help make your day-to-day work easier. This takes about 5 minutes. Your answers are honest and direct — there are no wrong answers.</p>
-    <div class="progress-bar-wrap">
-      <div class="progress-bar"><div class="progress-fill" id="progress" style="width: 0%"></div></div>
-      <span class="progress-label" id="progress-label">0 / 4</span>
+<header class="site-header">
+  <div class="logo">Cleveland Menu <span>Printing</span></div>
+  <div class="badge">Confidential — Internal Use Only</div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Help Us Understand <em>Your Work</em></h1>
+    <p>This survey is about you — what you enjoy, where you get stuck, and how your role connects to the customer. Your answers will directly shape how we use technology at CMP, and how we build a workplace where people do more of what they're good at.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">~8 minutes</span>
+      <span class="hero-pill">Anonymous options available</span>
+      <span class="hero-pill">No wrong answers</span>
+      <span class="hero-pill">Results shared with leadership only</span>
     </div>
   </div>
-
-  <!-- Section 1: About You -->
-  <div class="section active" id="section-1">
-    <div class="section-label">Section 1 of 4 — About you</div>
-
-    <div class="field">
-      <label>Your name <span class="required-star">*</span></label>
-      <input type="text" id="name" placeholder="First and last name" />
-    </div>
-
-    <div class="field">
-      <label>Department <span class="required-star">*</span></label>
-      <select id="department">
-        <option value="" disabled selected>Select your department</option>
-        <option>IT / Development</option>
-        <option>Sales</option>
-        <option>Creative Services</option>
-        <option>Prepress / Production</option>
-        <option>Bindery</option>
-        <option>Shipping</option>
-        <option>Digital Solutions</option>
-        <option>Accounting</option>
-        <option>Customer Service</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Job title</label>
-      <input type="text" id="title" placeholder="e.g. Graphic Designer, Sales Rep, Prepress Operator" />
-    </div>
-
-    <div class="field">
-      <label>How long have you been at CMP?</label>
-      <div class="radio-group" id="tenure">
-        <label class="radio-item"><input type="radio" name="tenure" value="Less than 1 year"> Less than 1 year</label>
-        <label class="radio-item"><input type="radio" name="tenure" value="1–3 years"> 1–3 years</label>
-        <label class="radio-item"><input type="radio" name="tenure" value="3–7 years"> 3–7 years</label>
-        <label class="radio-item"><input type="radio" name="tenure" value="7+ years"> 7+ years</label>
-      </div>
-    </div>
-
-    <div class="nav-row">
-      <span></span>
-      <button class="btn btn-primary" onclick="nextSection(1)">Next →</button>
-    </div>
-  </div>
-
-  <!-- Section 2: Your Work -->
-  <div class="section" id="section-2">
-    <div class="section-label">Section 2 of 4 — Your work</div>
-
-    <div class="field">
-      <label>What parts of your job do you enjoy most? <span class="required-star">*</span></label>
-      <div class="hint">The tasks or moments that feel meaningful, satisfying, or like the reason you do this work.</div>
-      <textarea id="enjoy" placeholder="e.g. Collaborating with the design team on new concepts, building relationships with clients, solving a tricky production problem..."></textarea>
-    </div>
-
-    <div class="field">
-      <label>What parts of your job do you find most tedious, frustrating, or time-consuming? <span class="required-star">*</span></label>
-      <div class="hint">Be honest. There are no wrong answers here — this is exactly what we're trying to fix.</div>
-      <textarea id="frustrating" placeholder="e.g. Re-entering the same information in multiple systems, tracking down job status updates, reformatting files, manual reporting..."></textarea>
-    </div>
-
-    <div class="field">
-      <label>Roughly how many hours per week do you spend on tasks you consider repetitive or low-value?</label>
-      <div class="radio-group" id="hours-wasted">
-        <label class="radio-item"><input type="radio" name="hours" value="Less than 2 hours"> Less than 2 hours</label>
-        <label class="radio-item"><input type="radio" name="hours" value="2–5 hours"> 2–5 hours</label>
-        <label class="radio-item"><input type="radio" name="hours" value="5–10 hours"> 5–10 hours</label>
-        <label class="radio-item"><input type="radio" name="hours" value="More than 10 hours"> More than 10 hours</label>
-      </div>
-    </div>
-
-    <div class="nav-row">
-      <button class="btn btn-ghost" onclick="prevSection(2)">← Back</button>
-      <button class="btn btn-primary" onclick="nextSection(2)">Next →</button>
-    </div>
-  </div>
-
-  <!-- Section 3: AI Familiarity -->
-  <div class="section" id="section-3">
-    <div class="section-label">Section 3 of 4 — AI familiarity</div>
-
-    <div class="field">
-      <label>How familiar are you with AI tools (like ChatGPT, Claude, Copilot, etc.)?</label>
-      <div class="radio-group" id="ai-familiarity">
-        <label class="radio-item"><input type="radio" name="familiar" value="Never used one"> I've never used one</label>
-        <label class="radio-item"><input type="radio" name="familiar" value="Tried it a few times"> I've tried one a few times</label>
-        <label class="radio-item"><input type="radio" name="familiar" value="Use occasionally"> I use one occasionally</label>
-        <label class="radio-item"><input type="radio" name="familiar" value="Use regularly"> I use one regularly at work</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>If you currently use any AI tools, which ones? (Check all that apply)</label>
-      <div class="checkbox-group" id="tools-used">
-        <label class="checkbox-item"><input type="checkbox" value="ChatGPT"> ChatGPT</label>
-        <label class="checkbox-item"><input type="checkbox" value="Claude (Anthropic)"> Claude (Anthropic)</label>
-        <label class="checkbox-item"><input type="checkbox" value="Microsoft Copilot"> Microsoft Copilot</label>
-        <label class="checkbox-item"><input type="checkbox" value="Gemini (Google)"> Gemini (Google)</label>
-        <label class="checkbox-item"><input type="checkbox" value="Adobe Firefly / AI features"> Adobe Firefly / AI features in Adobe apps</label>
-        <label class="checkbox-item"><input type="checkbox" value="Other"> Other</label>
-        <label class="checkbox-item"><input type="checkbox" value="None"> None — I don't use any</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>What are you using AI for, if anything?</label>
-      <div class="hint">Leave blank if you're not currently using AI tools.</div>
-      <textarea id="ai-usage" placeholder="e.g. Writing emails, generating design concepts, summarizing documents, answering questions..."></textarea>
-    </div>
-
-    <div class="field">
-      <label>On a scale of 1–5, how open are you to using AI tools in your daily work?</label>
-      <div class="hint">1 = Not interested at all &nbsp;·&nbsp; 5 = Very excited to try it</div>
-      <div class="scale-wrap" id="openness-scale">
-        <button class="scale-btn" onclick="selectScale('openness', 1, this)">1</button>
-        <button class="scale-btn" onclick="selectScale('openness', 2, this)">2</button>
-        <button class="scale-btn" onclick="selectScale('openness', 3, this)">3</button>
-        <button class="scale-btn" onclick="selectScale('openness', 4, this)">4</button>
-        <button class="scale-btn" onclick="selectScale('openness', 5, this)">5</button>
-      </div>
-    </div>
-
-    <div class="nav-row">
-      <button class="btn btn-ghost" onclick="prevSection(3)">← Back</button>
-      <button class="btn btn-primary" onclick="nextSection(3)">Next →</button>
-    </div>
-  </div>
-
-  <!-- Section 4: Open Thoughts -->
-  <div class="section" id="section-4">
-    <div class="section-label">Section 4 of 4 — Open thoughts</div>
-
-    <div class="field">
-      <label>Is there a specific task or workflow in your department that you think AI could genuinely help with?</label>
-      <div class="hint">Think about the task that, if automated or assisted, would make the biggest positive difference to your day.</div>
-      <textarea id="ai-opportunity" placeholder="Describe the task, roughly how often it happens, and why it's a pain point..."></textarea>
-    </div>
-
-    <div class="field">
-      <label>Do you have any concerns about AI being introduced at CMP?</label>
-      <div class="checkbox-group" id="concerns">
-        <label class="checkbox-item"><input type="checkbox" value="Privacy / client data"> Privacy — I'm worried about client or company data leaving the building</label>
-        <label class="checkbox-item"><input type="checkbox" value="Job security"> Job security — I'm concerned AI could replace my role or reduce headcount</label>
-        <label class="checkbox-item"><input type="checkbox" value="Accuracy / quality"> Accuracy — I'm not sure AI output can be trusted for production work</label>
-        <label class="checkbox-item"><input type="checkbox" value="Learning curve"> Learning curve — I'm not sure I have time to learn new tools</label>
-        <label class="checkbox-item"><input type="checkbox" value="No concerns"> I don't have major concerns</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Anything else you want us to know?</label>
-      <textarea id="other" placeholder="Questions, skepticism, enthusiasm, ideas — all welcome."></textarea>
-    </div>
-
-    <div class="nav-row">
-      <button class="btn btn-ghost" onclick="prevSection(4)">← Back</button>
-      <button class="btn btn-primary" onclick="submitSurvey()">Submit survey</button>
-    </div>
-  </div>
-
-  <!-- Thank You -->
-  <div class="thank-you" id="thank-you">
-    <div class="check-circle">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-    </div>
-    <h2>Thanks for your input.</h2>
-    <p>Your responses help IT understand where AI can genuinely make a difference at CMP. We'll share what we learn as the initiative moves forward.</p>
-  </div>
-
 </div>
 
+<div class="main">
+
+  <div class="callout-bar">
+    <strong>Why we're asking:</strong> The companies that will use AI well aren't the ones who spray it everywhere — they're the ones who actually understand their own work and their people. Before we make any decisions about technology, we want to hear from you.
+  </div>
+
+  <form id="survey-form">
+
+    <!-- ══ SECTION 1: About You ══ -->
+    <div class="section-label">
+      <div class="num">1</div>
+      <div>
+        <h2>About You</h2>
+        <p>Basic context so we can look at patterns across departments</p>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="card">
+      <div class="field">
+        <label>Department <span class="req">*</span></label>
+        <select id="dept" required>
+          <option value="">— Select your department —</option>
+          <option>IT / Product Engineering</option>
+          <option>Sales</option>
+          <option>Prepress / Art</option>
+          <option>Production</option>
+          <option>Bindery</option>
+          <option>Accounting</option>
+          <option>Customer Service</option>
+          <option>Shipping / Logistics</option>
+          <option>Management / Leadership</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>How long have you been at CMP? <span class="req">*</span></label>
+        <div class="choice-grid">
+          <label class="choice-item"><input type="radio" name="tenure" value="Under 1 year" required><span class="choice-text">Under 1 year</span></label>
+          <label class="choice-item"><input type="radio" name="tenure" value="1–3 years"><span class="choice-text">1–3 years</span></label>
+          <label class="choice-item"><input type="radio" name="tenure" value="4–7 years"><span class="choice-text">4–7 years</span></label>
+          <label class="choice-item"><input type="radio" name="tenure" value="8+ years"><span class="choice-text">8+ years</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Your name <span class="sub">Optional — leave blank to stay anonymous</span></label>
+        <input type="text" placeholder="First name or leave blank">
+      </div>
+    </div>
+
+    <!-- ══ SECTION 2: Your Work ══ -->
+    <div class="section-label">
+      <div class="num">2</div>
+      <div>
+        <h2>Your Work</h2>
+        <p>What the job actually looks and feels like day-to-day</p>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="card">
+      <div class="field">
+        <label>In your own words, what does a typical day look like for you?
+          <span class="sub">Walk us through the main things you do — start to finish. No need to be formal.</span>
+        </label>
+        <textarea placeholder="Example: I start by checking job tickets in the queue, then I…" rows="5"></textarea>
+      </div>
+
+      <div class="field">
+        <label>What parts of your job do you find most meaningful or enjoyable? <span class="req">*</span>
+          <span class="sub">These are the things that make a good day feel like a good day.</span>
+        </label>
+        <textarea placeholder="Example: I love when I can sit down and really design something — when there's time to think creatively and get feedback from the team." rows="4"></textarea>
+      </div>
+
+      <div class="field">
+        <label>What parts of your job feel like a grind — things that slow you down or feel like a waste of your time? <span class="req">*</span>
+          <span class="sub">Be honest. There are no wrong answers. We want to find these things and fix them.</span>
+        </label>
+        <textarea placeholder="Example: I spend a lot of time reformatting the same reports manually every week. It feels repetitive and I never feel like I'm adding much value doing it." rows="4"></textarea>
+      </div>
+
+      <div class="field">
+        <label>How much of your day feels like it's spent on work that <em>actually matters</em> vs. work that just needs to get done?</label>
+        <div style="margin-top:10px;">
+          <div class="scale-row">
+            <span class="scale-ends" style="min-width:100px; text-align:right; font-size:11px;">Mostly grind</span>
+            <div class="scale-btns" id="ratio-scale">
+              <button type="button" class="scale-btn" data-val="1">1</button>
+              <button type="button" class="scale-btn" data-val="2">2</button>
+              <button type="button" class="scale-btn" data-val="3">3</button>
+              <button type="button" class="scale-btn" data-val="4">4</button>
+              <button type="button" class="scale-btn" data-val="5">5</button>
+            </div>
+            <span class="scale-ends" style="min-width:100px; font-size:11px;">Mostly meaningful</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 3: The Flow of Work ══ -->
+    <div class="section-label">
+      <div class="num">3</div>
+      <div>
+        <h2>The Flow of Work</h2>
+        <p>How your role connects to the customer and the rest of the company</p>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="note-box">
+      Every job at CMP exists because a customer placed an order. The questions below help us understand where work flows smoothly — and where it gets stuck.
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <label>How clearly do you understand how your work connects to the final product the customer receives? <span class="req">*</span></label>
+        <div class="choice-grid single">
+          <label class="choice-item"><input type="radio" name="end_to_end" value="Very clear" required><span class="choice-text">Very clear — I know exactly how my work affects the customer</span></label>
+          <label class="choice-item"><input type="radio" name="end_to_end" value="Somewhat clear"><span class="choice-text">Somewhat clear — I understand my piece but not the full picture</span></label>
+          <label class="choice-item"><input type="radio" name="end_to_end" value="Not very clear"><span class="choice-text">Not very clear — my work feels disconnected from the end result</span></label>
+          <label class="choice-item"><input type="radio" name="end_to_end" value="Never thought about it"><span class="choice-text">I haven't really thought about this</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Where do handoffs between your role and other departments tend to break down?
+          <span class="sub">Think about the moments when work gets stuck, lost, or comes back with problems.</span>
+        </label>
+        <textarea placeholder="Example: When jobs come from Sales to Prepress, the files are often missing specs or the wrong size — we spend time chasing info that should have come with the order." rows="4"></textarea>
+      </div>
+
+      <div class="field">
+        <label>If you could fix one thing about how work flows through your department — or between yours and another — what would it be?</label>
+        <textarea placeholder="Example: If Sales could log customer notes directly into the job ticket instead of emailing them to us separately, we'd save so much back-and-forth." rows="3"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Have you ever noticed a problem or a better way to do something, but didn't have a good way to raise it? <span class="req">*</span></label>
+        <div class="choice-grid single">
+          <label class="choice-item"><input type="radio" name="voice" value="Yes, regularly" required><span class="choice-text">Yes, this happens regularly</span></label>
+          <label class="choice-item"><input type="radio" name="voice" value="Occasionally"><span class="choice-text">Occasionally</span></label>
+          <label class="choice-item"><input type="radio" name="voice" value="Rarely"><span class="choice-text">Rarely — I usually know who to go to</span></label>
+          <label class="choice-item"><input type="radio" name="voice" value="No"><span class="choice-text">No — there's always a clear path to raise concerns</span></label>
+        </div>
+      </div>
+
+      <div class="field conditional" id="voice-detail">
+        <label>Can you give an example?
+          <span class="sub">You don't need names or details — just describe the situation.</span>
+        </label>
+        <textarea placeholder="Describe a situation where you saw a better way but weren't sure how to raise it…" rows="3"></textarea>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 4: AI & Technology ══ -->
+    <div class="section-label">
+      <div class="num">4</div>
+      <div>
+        <h2>AI & Technology</h2>
+        <p>Where you are with it today, and what would actually help</p>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="card">
+      <div class="field">
+        <label>Have you used any AI tools in your work (at CMP or on your own)? <span class="req">*</span></label>
+        <div class="choice-grid single">
+          <label class="choice-item"><input type="radio" name="ai_use" value="Yes regularly" required id="ai-yes"><span class="choice-text">Yes — I use them regularly</span></label>
+          <label class="choice-item"><input type="radio" name="ai_use" value="Tried a few times"><span class="choice-text">I've tried them a few times</span></label>
+          <label class="choice-item"><input type="radio" name="ai_use" value="No not sure how"><span class="choice-text">No — not sure how they'd apply to my job</span></label>
+          <label class="choice-item"><input type="radio" name="ai_use" value="No not interested"><span class="choice-text">No — not really interested</span></label>
+        </div>
+      </div>
+
+      <div class="field conditional" id="ai-tools-used">
+        <label>What tools are you using, and what are you using them for?</label>
+        <textarea placeholder="Example: ChatGPT for drafting emails, Claude for writing specs…" rows="3"></textarea>
+      </div>
+
+      <div class="field">
+        <label>If AI could take something off your plate — something repetitive, time-consuming, or frustrating — what would you want it to handle?
+          <span class="sub">Don't worry about whether it's technically possible. What would make your day better?</span>
+        </label>
+        <textarea placeholder="Example: Automatically reformatting incoming art files to our spec sheet. Or summarizing long email threads so I don't have to read the whole chain." rows="4"></textarea>
+      </div>
+
+      <div class="field">
+        <label>What tasks do you think should <em>stay human</em> — things where you'd want a person making the call, not an algorithm? <span class="req">*</span>
+          <span class="sub">This is important. We're not trying to automate judgment.</span>
+        </label>
+        <textarea placeholder="Example: Customer conversations, anything that requires context about a relationship, final quality decisions before a job ships." rows="4"></textarea>
+      </div>
+
+      <div class="field">
+        <label>What concerns do you have about AI being used at CMP?
+          <span class="sub">Job security, accuracy, complexity, privacy — anything is fair to raise here.</span>
+        </label>
+        <textarea placeholder="Example: I worry about AI making mistakes that nobody catches because people assumed it was right." rows="3"></textarea>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 5: The Bigger Picture ══ -->
+    <div class="section-label">
+      <div class="num">5</div>
+      <div>
+        <h2>The Bigger Picture</h2>
+        <p>Your read on CMP and where we're headed</p>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="card">
+      <div class="field">
+        <label>How would you describe the culture at CMP right now when it comes to trying new things or improving how we work? <span class="req">*</span></label>
+        <div class="choice-grid single">
+          <label class="choice-item"><input type="radio" name="culture" value="Open and encouraged" required><span class="choice-text">Open and encouraged — people are generally receptive</span></label>
+          <label class="choice-item"><input type="radio" name="culture" value="Depends on department"><span class="choice-text">It depends a lot on the department or manager</span></label>
+          <label class="choice-item"><input type="radio" name="culture" value="We stick to what works"><span class="choice-text">We tend to stick to what works — change is slow</span></label>
+          <label class="choice-item"><input type="radio" name="culture" value="Not sure"><span class="choice-text">Not sure</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>How confident are you that leadership understands what your day-to-day work actually involves? <span class="req">*</span></label>
+        <div style="margin-top:10px;">
+          <div class="scale-row">
+            <span class="scale-ends" style="min-width:90px; text-align:right; font-size:11px;">Not at all</span>
+            <div class="scale-btns" id="confidence-scale">
+              <button type="button" class="scale-btn" data-val="1">1</button>
+              <button type="button" class="scale-btn" data-val="2">2</button>
+              <button type="button" class="scale-btn" data-val="3">3</button>
+              <button type="button" class="scale-btn" data-val="4">4</button>
+              <button type="button" class="scale-btn" data-val="5">5</button>
+            </div>
+            <span class="scale-ends" style="min-width:90px; font-size:11px;">Very confident</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>If you could change one thing about working at CMP — anything — what would it be?</label>
+        <textarea placeholder="Big or small. Process, tools, communication, environment — whatever comes to mind first." rows="3"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Is there anything else you want leadership to know?
+          <span class="sub">Open floor. If something didn't fit anywhere else, here's the space for it.</span>
+        </label>
+        <textarea placeholder="Anything you want to share…" rows="4"></textarea>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-zone">
+      <p>Your response will be reviewed by IT leadership and shared in aggregate with department directors. Individual responses will not be shared without your permission.</p>
+      <button type="submit" class="btn-submit">Submit Survey →</button>
+    </div>
+
+  </form>
+
+  <!-- THANK YOU -->
+  <div id="thank-you">
+    <div class="ty-icon">✓</div>
+    <h2>Thank you.</h2>
+    <p>Your response has been recorded. We'll share what we learn — in plain language — before we make any decisions about tools or processes. The whole point of this is to let the work speak for itself.</p>
+  </div>
+
+</div><!-- /main -->
+
 <script>
-  const totalSections = 4;
-  const scaleValues = {};
-
-  function updateProgress(current) {
-    const pct = ((current - 1) / totalSections) * 100;
-    document.getElementById('progress').style.width = pct + '%';
-    document.getElementById('progress-label').textContent = (current - 1) + ' / ' + totalSections;
-  }
-
-  function nextSection(current) {
-    const next = current + 1;
-    document.getElementById('section-' + current).classList.remove('active');
-    if (next <= totalSections) {
-      document.getElementById('section-' + next).classList.add('active');
-      updateProgress(next);
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function prevSection(current) {
-    const prev = current - 1;
-    document.getElementById('section-' + current).classList.remove('active');
-    if (prev >= 1) {
-      document.getElementById('section-' + prev).classList.add('active');
-      updateProgress(prev);
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function selectScale(name, value, btn) {
-    scaleValues[name] = value;
-    const group = btn.parentElement;
-    group.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-  }
-
-  document.querySelectorAll('.radio-item input[type="radio"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-      const group = this.closest('.radio-group');
-      group.querySelectorAll('.radio-item').forEach(item => item.classList.remove('selected'));
-      this.closest('.radio-item').classList.add('selected');
-    });
-  });
-
-  document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', function() {
-      if (this.checked) {
-        this.closest('.checkbox-item').classList.add('checked');
-      } else {
-        this.closest('.checkbox-item').classList.remove('checked');
-      }
-    });
-  });
-
-  async function submitSurvey() {
-    const checkedTools = Array.from(document.querySelectorAll('#tools-used input:checked')).map(c => c.value).join(', ') || 'None selected';
-    const checkedConcerns = Array.from(document.querySelectorAll('#concerns input:checked')).map(c => c.value).join(', ') || 'None selected';
-    const tenure = document.querySelector('input[name="tenure"]:checked')?.value || '';
-    const hoursWasted = document.querySelector('input[name="hours"]:checked')?.value || '';
-    const familiar = document.querySelector('input[name="familiar"]:checked')?.value || '';
-
-    const payload = {
-      'Name': document.getElementById('name').value,
-      'Department': document.getElementById('department').value,
-      'Job Title': document.getElementById('title').value,
-      'Tenure at CMP': tenure,
-      'What they enjoy most': document.getElementById('enjoy').value,
-      'What they find frustrating': document.getElementById('frustrating').value,
-      'Hours per week on repetitive tasks': hoursWasted,
-      'AI familiarity': familiar,
-      'AI tools currently used': checkedTools,
-      'How they use AI': document.getElementById('ai-usage').value,
-      'Openness to AI (1-5)': scaleValues['openness'] || 'Not answered',
-      'AI opportunity identified': document.getElementById('ai-opportunity').value,
-      'Concerns about AI at CMP': checkedConcerns,
-      'Other comments': document.getElementById('other').value,
-    };
-
-    try {
-      const res = await fetch('https://formspree.io/f/mkoeddrb', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
+  // Scale buttons
+  document.querySelectorAll('.scale-btns').forEach(group => {
+    group.querySelectorAll('.scale-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
       });
-      if (res.ok) {
-        document.getElementById('section-4').classList.remove('active');
-        document.getElementById('thank-you').classList.add('active');
-        document.getElementById('progress').style.width = '100%';
-        document.getElementById('progress-label').textContent = '4 / 4';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Show "voice detail" if they selected yes/occasionally
+  document.querySelectorAll('input[name="voice"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const val = document.querySelector('input[name="voice"]:checked')?.value;
+      const el = document.getElementById('voice-detail');
+      if (val === 'Yes, regularly' || val === 'Occasionally') {
+        el.classList.add('visible');
       } else {
-        alert('Something went wrong submitting the form. Please try again or contact IT.');
+        el.classList.remove('visible');
       }
-    } catch (err) {
-      alert('Submission failed — check your connection and try again.');
-    }
-  }
+    });
+  });
+
+  // Show AI tools used if they said yes
+  document.querySelectorAll('input[name="ai_use"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const val = document.querySelector('input[name="ai_use"]:checked')?.value;
+      const el = document.getElementById('ai-tools-used');
+      if (val === 'Yes regularly' || val === 'Tried a few times') {
+        el.classList.add('visible');
+      } else {
+        el.classList.remove('visible');
+      }
+    });
+  });
+
+  // Submit
+  document.getElementById('survey-form').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('survey-form').style.display = 'none';
+    document.getElementById('thank-you').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 </body>
 </html>
